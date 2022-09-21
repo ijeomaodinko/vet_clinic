@@ -16,6 +16,6 @@ CREATE TABLE animal (
 );
 
 
-CREATE TABLE animals (
-    name varchar(100)
-);
+-- CREATE TABLE animals (
+--     name varchar(100)
+-- );

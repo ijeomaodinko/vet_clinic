@@ -1,7 +1,5 @@
 /*Queries that provide answers to the questions from all projects.*/
 
-SELECT * from animals WHERE name = 'Luna';
-
 /* to select records where name ends with mon*/
 SELECT name FROM animals WHERE  name LIKE '%mon';
 
