@@ -15,7 +15,3 @@ CREATE TABLE animal (
     weight_kg DECIMAL NOT NULL
 );
 
-
--- CREATE TABLE animals (
---     name varchar(100)
--- );
