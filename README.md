@@ -1,10 +1,23 @@
-# curriculum-databases-projects-template
-
-> This template should be used for database related projects at Microverse.
-> Generate your own repository, update this README and edit all files content while working on projects. You should not be adding any new files unless asked otherwise.
+# Vet_Clinic 
+Vet_Clinic is a database for veterian clinic where different activities are store for use.
+Information can be retrived through different querries to suit requirement all time. 
 
 
 ## Getting Started
+To get a local copy up and running follow these simple example steps.
+
+Open your console. Run the following 
+
+If you are using HTTPS
+
+    "git clone https://github.com/ijeomaodinko/vet_clinic.git
+
+If you are using a SSH key.
+
+    "git clone https://github.com/ijeomaodinko/vet_clinic.git
+
+
+Press ENTER to create your local clone. After creating it, you can open the page by opening with Visual Studio Code. 
 
 This repository includes files with plain SQL that can be used to recreate a database:
 
@@ -13,13 +26,25 @@ This repository includes files with plain SQL that can be used to recreate a dat
 - Check [queries.sql](./queries.sql) for examples of queries that can be run on a newly created database. **Important note: this file might include queries that make changes in the database (e.g., remove records). Use them responsibly!**
 
 
+### Prerequisites
+- Vscode 
+- Postgresql
+
+### Installation
+
+     sudo apt-get update
+
+     sudo apt-get -y install postgresql
+
+
 ## Authors
 
-👤 **Author1**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+👤 **Ijeoma Odinko**
+
+- GitHub: [@ijeomaodinko](https://github.com/ijeomaodinko)
+- Twitter: [@pureblog](https://twitter.com/iodinko)
+- LinkedIn: [ijeomaodinko](https://linkedin.com/in/ijeomaodinko)
 
 
 ## 🤝 Contributing
