@@ -76,9 +76,9 @@ SELECT  MAX(escape_attempts) FROM animals;
 SELECT species,  MIN(weight_kg), MAX(weight_kg) FROM animals GROUP BY species;
 
 
+
 /* the average number of escape attempts per animal type of those born between 1990 and 2000*/
 SELECT species, AVG(escape_attempts) FROM animals WHERE date_of_birth >= '1990-01-01' AND date_of_birth <= '2000-12-31'GROUP BY species;
-
 
 /* to select animals belong to Melody Pond*/
 SELECT name FROM animals INNER JOIN owners ON animals.owners_id = owners.id WHERE full_name = 'Melody';

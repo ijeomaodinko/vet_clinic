@@ -30,13 +30,13 @@ CREATE TABLE species (
     name VARCHAR (100) NOT NULL
 );
 
-/* to reove the column speicies in animals table*/
+
+
+/* to remove the column speicies in animals table*/
 ALTER TABLE animals DROP COLUMN species;
 
 /*to add column species_id which is a foreign key*/
-ALTER TABLE animals ADD COLUMN species_id VARCHAR(100) NOT NULL;
-ALTER TABLE animals
-    ADD CONSTRAINT fk_species FOREIGN KEY (species_id) REFERENCES species(id) ON DELETE CASCADE;
+ALTER TABLE animals ADD  COLUMN species_id INT, ADD CONSTRAINT f_species_id FOREIGN KEY (species_id) REFERENCES species(id) ON DELETE CASCADE;
 
 /*to add column owners_id which is a foreign key*/
 ALTER TABLE animals ADD  COLUMN owners_id INT, ADD CONSTRAINT f_owners_id FOREIGN KEY (owners_id) REFERENCES owners(id) ON DELETE CASCADE;
