@@ -23,4 +23,27 @@ VALUES ( 'Charmander', DATE '2020-02-08', 0, FALSE, -11),
 	    ('Blossom', DATE '1998-10-13', 3,  TRUE, 17),
 	    ('Ditto', DATE '2022-05-14', 4, TRUE, 22);
 
-  
+/*to insert data into the owners table*/
+  INSERT INTO owners (full_name, age)
+VALUES ( 'Sam Smith', 34),
+	    ( 'Jennifer Orwell', 19),
+	    ('Bob', 45),
+	    ('Melody', 77),
+        ( 'Dean Winchester', 14),
+	    ('Jodie Whittaker', 38);
+	   
+/*to insert data into the species tables*/
+ INSERT INTO species (name)
+VALUES ( 'Pokemon'),
+	    ( 'Digimon');
+
+/*to update animals species*/
+UPDATE animals SET species_id= '2' WHERE name LIKE '%mon';
+
+UPDATE animals SET species_id= '1' WHERE name NOT LIKE '%mon';
+
+UPDATE animals SET owners_id='1' WHERE name ='Agumon';
+UPDATE animals SET owners_id='2' WHERE name ='Gabumon' OR name='Pikachu';
+UPDATE animals SET owners_id='3' WHERE name ='Devimon' OR name='Plantmon';
+UPDATE animals SET owners_id='4' WHERE name ='Charmander' OR name='Squirtle' OR name='Blossom';
+UPDATE animals SET owners_id='5' WHERE name ='Angemon' OR name='Boarmon';
