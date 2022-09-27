@@ -1,0 +1,88 @@
+CREATE TABLE "animals" (
+  "id" BIGSERIAL PRIMARY KEY,
+  "name" varchar(100),
+  "date_of_birth" Date,
+  "escape_attempts" INT,
+  "neutered" BOOLEAN,
+  "weight_kg" DECIMAL,
+  "species_id" INT,
+  "owners_id" INT
+);
+
+CREATE TABLE "owners" (
+  "id" BIGSERIAL PRIMARY KEY,
+  "full_name" VARCHAR(100),
+  "age" INT
+);
+
+CREATE TABLE "species" (
+  "id" BIGSERIAL PRIMARY KEY,
+  "name" VARCHAR(100)
+);
+
+CREATE TABLE "vets" (
+  "id" SERIAL PRIMARY KEY,
+  "name" VARCHAR(100),
+  "age" INT,
+  "date_of_graduation" DATE
+);
+
+CREATE TABLE "specializations" (
+  "species_id" INT,
+  "vets_id" INT,
+  "PRIMARY" KEY(species_id,vets_id)
+);
+
+CREATE TABLE "visits" (
+  "vets_id" INT,
+  "animals_id" INT,
+  "date_of_visit" DATE,
+  "PRIMARY" "KEY(vets_id, animals_id, date_of_visit)"
+);
+
+ALTER TABLE "animals" ADD FOREIGN KEY ("species_id") REFERENCES "species" ("id");
+
+ALTER TABLE "animals" ADD FOREIGN KEY ("owners_id") REFERENCES "species" ("id");
+
+CREATE TABLE "specializations_species" (
+  "specializations_species_id" INT NOT NULL,
+  "species_id" BIGSERIAL NOT NULL,
+  PRIMARY KEY ("specializations_species_id", "species_id")
+);
+
+ALTER TABLE "specializations_species" ADD FOREIGN KEY ("specializations_species_id") REFERENCES "specializations" ("species_id");
+
+ALTER TABLE "specializations_species" ADD FOREIGN KEY ("species_id") REFERENCES "species" ("id");
+
+
+CREATE TABLE "specializations_vets" (
+  "specializations_vets_id" INT NOT NULL,
+  "vets_id" SERIAL NOT NULL,
+  PRIMARY KEY ("specializations_vets_id", "vets_id")
+);
+
+ALTER TABLE "specializations_vets" ADD FOREIGN KEY ("specializations_vets_id") REFERENCES "specializations" ("vets_id");
+
+ALTER TABLE "specializations_vets" ADD FOREIGN KEY ("vets_id") REFERENCES "vets" ("id");
+
+
+CREATE TABLE "visits_vets" (
+  "visits_vets_id" INT NOT NULL,
+  "vets_id" SERIAL NOT NULL,
+  PRIMARY KEY ("visits_vets_id", "vets_id")
+);
+
+ALTER TABLE "visits_vets" ADD FOREIGN KEY ("visits_vets_id") REFERENCES "visits" ("vets_id");
+
+ALTER TABLE "visits_vets" ADD FOREIGN KEY ("vets_id") REFERENCES "vets" ("id");
+
+
+CREATE TABLE "visits_animals" (
+  "visits_animals_id" INT NOT NULL,
+  "animals_id" BIGSERIAL NOT NULL,
+  PRIMARY KEY ("visits_animals_id", "animals_id")
+);
+
+ALTER TABLE "visits_animals" ADD FOREIGN KEY ("visits_animals_id") REFERENCES "visits" ("animals_id");
+
+ALTER TABLE "visits_animals" ADD FOREIGN KEY ("animals_id") REFERENCES "animals" ("id")
