@@ -1,88 +1,61 @@
-CREATE TABLE "animals" (
-  "id" BIGSERIAL PRIMARY KEY,
-  "name" varchar(100),
-  "date_of_birth" Date,
-  "escape_attempts" INT,
-  "neutered" BOOLEAN,
-  "weight_kg" DECIMAL,
-  "species_id" INT,
-  "owners_id" INT
-);
+//// -- LEVEL 1
+//// -- Schemas, Tables and References
 
-CREATE TABLE "owners" (
-  "id" BIGSERIAL PRIMARY KEY,
-  "full_name" VARCHAR(100),
-  "age" INT
-);
+// Creating tables
+// You can define the tables with full schema names
 
-CREATE TABLE "species" (
-  "id" BIGSERIAL PRIMARY KEY,
-  "name" VARCHAR(100)
-);
-
-CREATE TABLE "vets" (
-  "id" SERIAL PRIMARY KEY,
-  "name" VARCHAR(100),
-  "age" INT,
-  "date_of_graduation" DATE
-);
-
-CREATE TABLE "specializations" (
-  "species_id" INT,
-  "vets_id" INT,
-  "PRIMARY" KEY(species_id,vets_id)
-);
-
-CREATE TABLE "visits" (
-  "vets_id" INT,
-  "animals_id" INT,
-  "date_of_visit" DATE,
-  "PRIMARY" "KEY(vets_id, animals_id, date_of_visit)"
-);
-
-ALTER TABLE "animals" ADD FOREIGN KEY ("species_id") REFERENCES "species" ("id");
-
-ALTER TABLE "animals" ADD FOREIGN KEY ("owners_id") REFERENCES "species" ("id");
-
-CREATE TABLE "specializations_species" (
-  "specializations_species_id" INT NOT NULL,
-  "species_id" BIGSERIAL NOT NULL,
-  PRIMARY KEY ("specializations_species_id", "species_id")
-);
-
-ALTER TABLE "specializations_species" ADD FOREIGN KEY ("specializations_species_id") REFERENCES "specializations" ("species_id");
-
-ALTER TABLE "specializations_species" ADD FOREIGN KEY ("species_id") REFERENCES "species" ("id");
+TABLE animals {
+    id BIGSERIAL [pk]
+    name varchar(100) 
+    date_of_birth Date
+    escape_attempts INT 
+    neutered BOOLEAN 
+    weight_kg DECIMAL
+    species_id INT
+    owners_id INT
+}
 
 
-CREATE TABLE "specializations_vets" (
-  "specializations_vets_id" INT NOT NULL,
-  "vets_id" SERIAL NOT NULL,
-  PRIMARY KEY ("specializations_vets_id", "vets_id")
-);
+TABLE owners {
+    id BIGSERIAL [pk]
+    full_name VARCHAR(100)
+    age INT 
+}
 
-ALTER TABLE "specializations_vets" ADD FOREIGN KEY ("specializations_vets_id") REFERENCES "specializations" ("vets_id");
+TABLE species {
+    id BIGSERIAL [pk]
+    name VARCHAR (100) 
+}
 
-ALTER TABLE "specializations_vets" ADD FOREIGN KEY ("vets_id") REFERENCES "vets" ("id");
+Ref: animals.species_id > species.id
+Ref: animals.owners_id > species.id
 
+// to create table for vets
+TABLE vets {
+    id SERIAL [pk]
+    name VARCHAR (100)
+    age INT
+    date_of_graduation DATE
+}
 
-CREATE TABLE "visits_vets" (
-  "visits_vets_id" INT NOT NULL,
-  "vets_id" SERIAL NOT NULL,
-  PRIMARY KEY ("visits_vets_id", "vets_id")
-);
+// to create many-to-many relationship join table called specialization
+TABLE specializations {
+  species_id INT
+  vets_id INT
+  PRIMARY KEY (species_id,vets_id)
+}
 
-ALTER TABLE "visits_vets" ADD FOREIGN KEY ("visits_vets_id") REFERENCES "visits" ("vets_id");
+Ref: specializations.species_id <> species.id
+Ref: specializations.vets_id <> vets.id
 
-ALTER TABLE "visits_vets" ADD FOREIGN KEY ("vets_id") REFERENCES "vets" ("id");
+// to create many-to-many relationship join table called visits
+TABLE visits {
+  vets_id INT
+  animals_id INT
+  date_of_visit DATE
+  PRIMARY KEY (vets_id, animals_id, date_of_visit)
+}
+  
+Ref: visits.vets_id <> vets.id
+Ref: visits.animals_id <> animals.id
 
-
-CREATE TABLE "visits_animals" (
-  "visits_animals_id" INT NOT NULL,
-  "animals_id" BIGSERIAL NOT NULL,
-  PRIMARY KEY ("visits_animals_id", "animals_id")
-);
-
-ALTER TABLE "visits_animals" ADD FOREIGN KEY ("visits_animals_id") REFERENCES "visits" ("animals_id");
-
-ALTER TABLE "visits_animals" ADD FOREIGN KEY ("animals_id") REFERENCES "animals" ("id")
