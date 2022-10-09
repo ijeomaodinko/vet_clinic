@@ -1,0 +1,61 @@
+//// -- LEVEL 1
+//// -- Schemas, Tables and References
+
+// Creating tables
+// You can define the tables with full schema names
+
+TABLE animals {
+    id BIGSERIAL [pk]
+    name varchar(100) 
+    date_of_birth Date
+    escape_attempts INT 
+    neutered BOOLEAN 
+    weight_kg DECIMAL
+    species_id INT
+    owners_id INT
+}
+
+
+TABLE owners {
+    id BIGSERIAL [pk]
+    full_name VARCHAR(100)
+    age INT 
+}
+
+TABLE species {
+    id BIGSERIAL [pk]
+    name VARCHAR (100) 
+}
+
+Ref: animals.species_id > species.id
+Ref: animals.owners_id > species.id
+
+// to create table for vets
+TABLE vets {
+    id SERIAL [pk]
+    name VARCHAR (100)
+    age INT
+    date_of_graduation DATE
+}
+
+// to create many-to-many relationship join table called specialization
+TABLE specializations {
+  species_id INT
+  vets_id INT
+  PRIMARY KEY (species_id,vets_id)
+}
+
+Ref: specializations.species_id <> species.id
+Ref: specializations.vets_id <> vets.id
+
+// to create many-to-many relationship join table called visits
+TABLE visits {
+  vets_id INT
+  animals_id INT
+  date_of_visit DATE
+  PRIMARY KEY (vets_id, animals_id, date_of_visit)
+}
+  
+Ref: visits.vets_id <> vets.id
+Ref: visits.animals_id <> animals.id
+
