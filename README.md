@@ -1,4 +1,4 @@
-# Vet_Clinic 
+# Vet_Clinic  🦙🦙
 Vet_Clinic is a database for veterian clinic where different activities are store for use.
 Information can be retrived through different querries to suit requirement all time. 
 
@@ -25,6 +25,10 @@ This repository includes files with plain SQL that can be used to recreate a dat
 - Use [data.sql](./data.sql) to populate tables with sample data.
 - Check [queries.sql](./queries.sql) for examples of queries that can be run on a newly created database. **Important note: this file might include queries that make changes in the database (e.g., remove records). Use them responsibly!**
 
+### Shema Diagram Overview
+
+![image](https://user-images.githubusercontent.com/95123554/194757809-239d52a1-0dca-4f4b-91be-fa0bb7bec6c7.png)
+
 
 ### Prerequisites
 - Vscode 
@@ -37,7 +41,7 @@ This repository includes files with plain SQL that can be used to recreate a dat
      sudo apt-get -y install postgresql
 
 
-## Authors
+## Author
 
 
 👤 **Ijeoma Odinko**
